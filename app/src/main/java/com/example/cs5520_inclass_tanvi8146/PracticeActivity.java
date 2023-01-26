@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class PracticeActivity extends AppCompatActivity {
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 01
+ */
 
-    private Button button_log;
-    private Button button_toast;
+public class PracticeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +22,7 @@ public class PracticeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_practice);
         setTitle("Practice Activity");
 
-        button_log = findViewById(R.id.button_log);
+        Button button_log = findViewById(R.id.button_log);
         button_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,7 +30,7 @@ public class PracticeActivity extends AppCompatActivity {
             }
         });
 
-        button_toast = findViewById(R.id.button_toast);
+        Button button_toast = findViewById(R.id.button_toast);
         button_toast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

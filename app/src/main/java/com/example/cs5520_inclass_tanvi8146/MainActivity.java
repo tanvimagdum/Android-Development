@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 01
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,12 +19,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.button);
+        Button practice = findViewById(R.id.practice);
+        Button inClass_01 = findViewById(R.id.inclass01);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        practice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, PracticeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        inClass_01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, InClass01Activity.class);
                 startActivity(intent);
             }
         });

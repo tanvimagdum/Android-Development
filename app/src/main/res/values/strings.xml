@@ -1,3 +1,19 @@
+<!-- Tanvi Prashant Magdum -->
+<!-- Assignment 01-->
+
 <resources>
     <string name="app_name">CS5520_InClass_tanvi8146</string>
+    <string name="Practice">Practice</string>
+    <string name="InClass_01">InClass 01</string>
+    <string name="Body_Mass_Index">Body Mass Index (BMI)</string>
+    <string name="lblWeight">Weight</string>
+    <string name="hintWeight">Your weight in pounds</string>
+    <string name="lblPound">lb</string>
+    <string name="lblHeight">Height</string>
+    <string name="hintHeightFt">feet</string>
+    <string name="lblFeet">feet</string>
+    <string name="hintHeightIn">inches</string>
+    <string name="lblInches">inches</string>
+    <string name="btnBMI">Calculate BMI</string>
+    <string name="msgBMI">Click on Calculate BMI to find your BMI</string>
 </resources>

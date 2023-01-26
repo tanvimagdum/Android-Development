@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".PracticeActivity">
 
+    <!-- Tanvi Prashant Magdum -->
+    <!-- Assignment 01-->
+
     <Button
         android:id="@+id/button_log"
         android:layout_width="wrap_content"
