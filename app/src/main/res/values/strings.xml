@@ -3,8 +3,8 @@
 
 <resources>
     <string name="app_name">CS5520_InClass_tanvi8146</string>
-    <string name="Practice">Practice</string>
-    <string name="InClass_01">InClass 01</string>
+    <string name="btnPractice">Practice</string>
+    <string name="btn_InClass_01">InClass 01</string>
     <string name="Body_Mass_Index">Body Mass Index (BMI)</string>
     <string name="lblWeight">Weight</string>
     <string name="hintWeight">Your weight in pounds</string>
@@ -16,4 +16,21 @@
     <string name="lblInches">inches</string>
     <string name="btnBMI">Calculate BMI</string>
     <string name="msgBMI">Click on Calculate BMI to find your BMI</string>
+    <string name="btn_InClass_02">InClass 02</string>
+    <string name="txtName">Name</string>
+    <string name="hintName">Name</string>
+    <string name="hintEmail">Email</string>
+    <string name="lblIUse">I use</string>
+    <string name="radioAndroid">Android</string>
+    <string name="radioiOS">iOS</string>
+    <string name="lblMood">Your current mood:</string>
+    <string name="btnSubmit">Submit</string>
+    <string name="lblAvatar">Select your Avatar</string>
+    <string name="txtMood">Angry</string>
+    <string name="lblDisplayName">Name:</string>
+    <string name="lblDisplayEmail">Email:</string>
+    <string name="lblDisplayIUse">I use </string>
+    <string name="lblDisplayIUse2">!</string>
+    <string name="lblDisplayMood">I am </string>
+    <string name="lblDisplayMood2">!</string>
 </resources>

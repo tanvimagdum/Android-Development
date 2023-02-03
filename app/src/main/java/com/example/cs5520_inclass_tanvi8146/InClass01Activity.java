@@ -17,23 +17,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class InClass01Activity extends AppCompatActivity {
 
+    private Button btn_bmi;
+    private TextView txtWeight;
+    private TextView txtHeightFt;
+    private TextView txtHeightIn;
+    private TextView txtMessage;
+    private TextView txtStatus;
+    private TextView msgBMI;
+
     @Override
     protected void onCreate(Bundle savedInstanceStat) {
         super.onCreate(savedInstanceStat);
         setContentView(R.layout.activity_inclass01);
         setTitle("BMI Calculator");
 
-        Button btn_bmi = findViewById(R.id.btnBMI);
+        btn_bmi = findViewById(R.id.btnBMI);
         btn_bmi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                TextView txtWeight = findViewById(R.id.txtWeight);
-                TextView txtHeightFt = findViewById(R.id.txtHeightFt);
-                TextView txtHeightIn = findViewById(R.id.txtHeightIn);
-                TextView txtMessage = findViewById(R.id.txtMessage);
-                TextView txtStatus = findViewById(R.id.txtStatus);
-                TextView msgBMI = findViewById(R.id.msgBMI);
+                txtWeight = findViewById(R.id.txtWeight);
+                txtHeightFt = findViewById(R.id.txtHeightFt);
+                txtHeightIn = findViewById(R.id.txtHeightIn);
+                txtMessage = findViewById(R.id.txtMessage);
+                txtStatus = findViewById(R.id.txtStatus);
+                msgBMI = findViewById(R.id.msgBMI);
 
                 msgBMI.setText("Click on Calculate BMI to find your BMI");
                 txtMessage.setText("");
