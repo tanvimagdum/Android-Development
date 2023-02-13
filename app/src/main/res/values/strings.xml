@@ -33,4 +33,22 @@
     <string name="lblDisplayIUse2">!</string>
     <string name="lblDisplayMood">I am </string>
     <string name="lblDisplayMood2">!</string>
+    <string name="inclass03">InClass 03</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hintFragName">Name</string>
+    <string name="txtFragEmail">Email</string>
+    <string name="lblFragIUse">I use</string>
+    <string name="radioFragAndroid">Android</string>
+    <string name="radioFragiOS">iOS</string>
+    <string name="lblFragMood">Your current mood:</string>
+    <string name="txtFragMood">Angry</string>
+    <string name="btnFragSubmit">Submit</string>
+    <string name="lblFragAvatar">Select your Avatar</string>
+    <string name="lblFragDisplayName">Name:</string>
+    <string name="lblFragDisplayEmail">Email:</string>
+    <string name="lblFragDisplayIUse">I use</string>
+    <string name="lblFragDisplayIUse2">!</string>
+    <string name="lblFragDisplayMood">I am</string>
+    <string name="lblFragDisplayMood2">!</string>
 </resources>
