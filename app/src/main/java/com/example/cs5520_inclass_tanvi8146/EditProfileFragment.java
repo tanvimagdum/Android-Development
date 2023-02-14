@@ -129,25 +129,24 @@ public class EditProfileFragment extends Fragment {
                     case 0:
                         txtFragMood.setText("Angry");
                         imgFragMood.setImageResource(R.drawable.angry);
-                        imgFragMood.setTag(R.drawable.angry);
+                        emoji = R.drawable.angry;
                         break;
                     case 1:
                         txtFragMood.setText("Sad");
                         imgFragMood.setImageResource(R.drawable.sad);
-                        imgFragMood.setTag(R.drawable.sad);
+                        emoji = R.drawable.sad;
                         break;
                     case 2:
                         txtFragMood.setText("Happy");
                         imgFragMood.setImageResource(R.drawable.happy);
-                        imgFragMood.setTag(R.drawable.happy);
+                        emoji = R.drawable.happy;
                         break;
                     case 3:
                         txtFragMood.setText("Awesome");
                         imgFragMood.setImageResource(R.drawable.awesome);
-                        imgFragMood.setTag(R.drawable.awesome);
+                        emoji = R.drawable.awesome;
                         break;
                 }
-                emoji = Integer.parseInt(imgFragMood.getTag().toString());
             }
 
             @Override
@@ -192,7 +191,6 @@ public class EditProfileFragment extends Fragment {
                 radioButtonFrag = rootView.findViewById(selectedId);
                 String radio = radioButtonFrag.getText().toString();
                 String mood = txtFragMood.getText().toString();
-                emoji = Integer.parseInt(imgFragMood.getTag().toString());
 
                 ProfileFrag profile = new ProfileFrag(name, email, radio, mood, avatar, emoji);
 

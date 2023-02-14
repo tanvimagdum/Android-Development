@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class HostActivityActivity extends AppCompatActivity
+public class InClass03HostActivity extends AppCompatActivity
                                 implements SelectAvatarFragment.AvatarFromSelectAvatarToHostActivity,
                                             EditProfileFragment.ProfileFromEditProfileToHostActivity  {
 
