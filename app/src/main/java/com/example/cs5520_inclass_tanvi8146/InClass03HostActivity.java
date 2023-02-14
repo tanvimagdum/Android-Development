@@ -16,7 +16,6 @@ public class InClass03HostActivity extends AppCompatActivity
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentLayout, new EditProfileFragment(), "EditProfile")
-                .addToBackStack(null)
                 .commit();
 
     }

@@ -177,10 +177,10 @@ public class EditProfileFragment extends Fragment {
                     return;
                 }
 
-                /*if (titleImg == 0) {
-                    Toast.makeText(InClass02Activity.this, "Please select an Avatar", Toast.LENGTH_SHORT).show();
+                if (avatar == 0) {
+                    Toast.makeText(getActivity(), "Please select an Avatar", Toast.LENGTH_SHORT).show();
                     return;
-                }*/
+                }
 
                 if (!radioFragAndroid.isChecked() && !radioFragiOS.isChecked()) {
                     Toast.makeText(getActivity(), "Please select Android or iOS", Toast.LENGTH_SHORT).show();
