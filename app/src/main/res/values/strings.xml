@@ -51,4 +51,12 @@
     <string name="lblFragDisplayIUse2">!</string>
     <string name="lblFragDisplayMood">I am</string>
     <string name="lblFragDisplayMood2">!</string>
+    <string name="btn_InClass_04">InClass 04</string>
+    <string name="lblComplexity">Select Complexity:</string>
+    <string name="lblTimes">times</string>
+    <string name="lblMinimum">Minimum:</string>
+    <string name="lblMaximum">Maximum:</string>
+    <string name="lblAverage">Average:</string>
+    <string name="btnGenerateNumber">Generate Number</string>
+    <string name="txtComplexity">0</string>
 </resources>
