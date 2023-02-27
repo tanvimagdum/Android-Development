@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".InClass05Activity">
 
+    <!-- Tanvi Prashant Magdum -->
+    <!-- Assignment 05-->
+
     <EditText
         android:id="@+id/txtImageSearch"
         android:layout_width="269dp"
