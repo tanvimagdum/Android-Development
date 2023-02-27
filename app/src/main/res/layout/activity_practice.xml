@@ -7,7 +7,7 @@
     tools:context=".practice.PracticeActivity">
 
     <!-- Tanvi Prashant Magdum -->
-    <!-- Assignment 01-->
+    <!-- Assignment practice-->
 
     <Button
         android:id="@+id/button_log"

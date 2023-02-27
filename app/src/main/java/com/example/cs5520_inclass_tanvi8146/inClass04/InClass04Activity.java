@@ -1,4 +1,4 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass04;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,10 +13,15 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cs5520_inclass_tanvi8146.inClass02.InClass02Activity;
+import com.example.cs5520_inclass_tanvi8146.R;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 04
+ */
 
 public class InClass04Activity extends AppCompatActivity {
 

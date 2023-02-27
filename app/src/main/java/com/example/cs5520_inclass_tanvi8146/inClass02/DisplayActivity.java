@@ -8,6 +8,11 @@ import android.widget.TextView;
 
 import com.example.cs5520_inclass_tanvi8146.R;
 
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 02
+ */
+
 public class DisplayActivity extends AppCompatActivity {
 
     private TextView txtDisplayName;

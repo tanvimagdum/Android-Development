@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.example.cs5520_inclass_tanvi8146.inClass01.InClass01Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass02.InClass02Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass03.InClass03HostActivity;
+import com.example.cs5520_inclass_tanvi8146.inClass04.InClass04Activity;
 import com.example.cs5520_inclass_tanvi8146.practice.PracticeActivity;
 
 /*
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Button inClass_02 = findViewById(R.id.inclass02);
         Button inClass_03 = findViewById(R.id.inclass03);
         Button inClass_04 = findViewById(R.id.inclass04);
+        Button inClass_05 = findViewById(R.id.inclass05);
 
         practice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, InClass04Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        inClass_05.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, InClass05Activity.class);
                 startActivity(intent);
             }
         });

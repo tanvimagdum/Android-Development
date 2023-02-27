@@ -20,6 +20,11 @@ import android.widget.Toast;
 
 import com.example.cs5520_inclass_tanvi8146.R;
 
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 02
+ */
+
 public class InClass02Activity extends AppCompatActivity {
 
     final static String Profile_Key = "toProfile";

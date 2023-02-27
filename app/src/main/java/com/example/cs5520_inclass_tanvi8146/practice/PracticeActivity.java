@@ -12,7 +12,7 @@ import com.example.cs5520_inclass_tanvi8146.R;
 
 /*
  * Tanvi Prashant Magdum
- * Assignment 01
+ * Assignment practice
  */
 
 public class PracticeActivity extends AppCompatActivity {

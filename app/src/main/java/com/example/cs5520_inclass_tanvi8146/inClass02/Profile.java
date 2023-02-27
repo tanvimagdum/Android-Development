@@ -2,6 +2,11 @@ package com.example.cs5520_inclass_tanvi8146.inClass02;
 
 import java.io.Serializable;
 
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 02
+ */
+
 public class Profile implements Serializable {
 
     protected String name;

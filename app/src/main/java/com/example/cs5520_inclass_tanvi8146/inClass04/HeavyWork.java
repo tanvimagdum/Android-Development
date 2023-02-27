@@ -1,13 +1,16 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass04;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 04
+ */
 
 public class HeavyWork implements Runnable {
 

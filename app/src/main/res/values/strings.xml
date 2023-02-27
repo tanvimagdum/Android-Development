@@ -59,4 +59,7 @@
     <string name="lblAverage">Average:</string>
     <string name="btnGenerateNumber">Generate Number</string>
     <string name="txtComplexity">0</string>
+    <string name="btn_InClass_05">InClass 05</string>
+    <string name="hintImageSearch">Search Keyword</string>
+    <string name="btnGo">GO</string>
 </resources>

@@ -6,6 +6,11 @@ import android.os.Bundle;
 
 import com.example.cs5520_inclass_tanvi8146.R;
 
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 03
+ */
+
 public class InClass03HostActivity extends AppCompatActivity
                                 implements SelectAvatarFragment.AvatarFromSelectAvatarToHostActivity,
                                             EditProfileFragment.ProfileFromEditProfileToHostActivity  {

@@ -7,6 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".inClass03.EditProfileFragment" >
 
+    <!-- Tanvi Prashant Magdum -->
+    <!-- Assignment 03-->
+
     <EditText
         android:id="@+id/txtFragName"
         android:layout_width="330dp"

@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".inClass02.DisplayActivity">
 
+    <!-- Tanvi Prashant Magdum -->
+    <!-- Assignment 02-->
+
     <ImageView
         android:id="@+id/imgDisplayAvatar"
         android:layout_width="135dp"

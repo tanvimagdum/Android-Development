@@ -13,6 +13,11 @@ import android.widget.ImageView;
 
 import com.example.cs5520_inclass_tanvi8146.R;
 
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 03
+ */
+
 public class SelectAvatarFragment extends Fragment {
 
     private ImageView imgFragAvatarf1;
