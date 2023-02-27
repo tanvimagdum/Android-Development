@@ -28,10 +28,15 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -64,15 +69,25 @@ public class InClass05Activity extends AppCompatActivity {
     private int currentIndex;
     private String[] urlList;
 
-    public boolean isInternetAvailable() {
+    private boolean isInternetAvailable() {
+        InetAddress inetAddress = null;
         try {
-            InetAddress ipAddr = InetAddress.getByName("www.google.com");
-            //You can replace it with your name
-            return !ipAddr.equals("");
-
-        } catch (Exception e) {
-            return false;
+            Future<InetAddress> future = Executors.newSingleThreadExecutor().submit(new Callable<InetAddress>() {
+                @Override
+                public InetAddress call() {
+                    try {
+                        return InetAddress.getByName("google.com");
+                    } catch (UnknownHostException e) {
+                        return null;
+                    }
+                }
+            });
+            inetAddress = future.get(1000, TimeUnit.MILLISECONDS);
+            future.cancel(true);
+        } catch (ExecutionException | TimeoutException | InterruptedException e) {
         }
+
+        return inetAddress!=null && !inetAddress.getHostAddress().equals("");
     }
 
     private void showLoading() {
@@ -88,15 +103,11 @@ public class InClass05Activity extends AppCompatActivity {
     private void enableButtons() {
         imgPrev.setEnabled(true);
         imgNext.setEnabled(true);
-        imgPrev.setVisibility(View.VISIBLE);
-        imgNext.setVisibility(View.VISIBLE);
     }
 
     private void disableButtons() {
         imgPrev.setEnabled(false);
         imgNext.setEnabled(false);
-        imgPrev.setVisibility(View.INVISIBLE);
-        imgNext.setVisibility(View.INVISIBLE);
     }
 
 
@@ -117,7 +128,6 @@ public class InClass05Activity extends AppCompatActivity {
 
                     @Override
                     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-
                         hideLoading();
                         return false;
                     }
@@ -153,7 +163,7 @@ public class InClass05Activity extends AppCompatActivity {
                     return;
                 }
 
-
+                if (isInternetAvailable()) {
                     txtImageLoad.setText("Loading...");
                     showLoading();
 
@@ -177,9 +187,10 @@ public class InClass05Activity extends AppCompatActivity {
                                 }
                             });
                         }
+
                         @Override
                         public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                            if(response.isSuccessful()) {
+                            if (response.isSuccessful()) {
                                 ResponseBody body = response.body();
                                 String bodyString = body.string();
                                 urlList = bodyString.split("\n");
@@ -187,11 +198,10 @@ public class InClass05Activity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         hideLoading();
-                                        if(urlList.length == 0) {
+                                        if (urlList.length == 0) {
                                             imgDisplay.setImageDrawable(null);
                                             Toast.makeText(InClass05Activity.this, "No images found", Toast.LENGTH_SHORT).show();
-                                        }
-                                        else {
+                                        } else {
                                             currentIndex = 0;
                                             displayImage();
                                             if (urlList.length > 1) {
@@ -200,8 +210,7 @@ public class InClass05Activity extends AppCompatActivity {
                                         }
                                     }
                                 });
-                            }
-                            else {
+                            } else {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -213,7 +222,10 @@ public class InClass05Activity extends AppCompatActivity {
                         }
                     });
 
-
+                }
+                else {
+                    Toast.makeText(InClass05Activity.this, "Please check your internet connection.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
