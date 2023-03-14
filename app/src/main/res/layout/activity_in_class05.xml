@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InClass05Activity">
+    tools:context=".inClass05.InClass05Activity">
 
     <!-- Tanvi Prashant Magdum -->
     <!-- Assignment 05-->

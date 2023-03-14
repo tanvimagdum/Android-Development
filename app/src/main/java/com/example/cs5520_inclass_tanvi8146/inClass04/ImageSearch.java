@@ -4,14 +4,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.cs5520_inclass_tanvi8146.InClass05Activity;
-
 import java.io.IOException;
-import java.net.InetAddress;
 
 import okhttp3.Call;
 import okhttp3.Callback;

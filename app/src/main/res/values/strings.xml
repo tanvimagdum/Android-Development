@@ -62,4 +62,9 @@
     <string name="btn_InClass_05">InClass 05</string>
     <string name="hintImageSearch">Search Keyword</string>
     <string name="btnGo">GO</string>
+    <string name="btn_InClass_06">InClass 06</string>
+    <string name="btnGetNews">Get News</string>
+    <string name="category_spinner_label">Select Category</string>
+    <string name="country_spinner_label">Select Country</string>
+    <string name="txtNewsHeader">Times Today</string>
 </resources>
