@@ -10,6 +10,11 @@ import com.bumptech.glide.Glide;
 
 import java.io.Serializable;
 
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 06
+ */
+
 public class DisplayNewsActivity extends AppCompatActivity implements Serializable {
 
     private TextView txtNewsTitle;
