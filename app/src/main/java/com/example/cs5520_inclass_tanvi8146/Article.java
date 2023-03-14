@@ -1,9 +1,6 @@
 package com.example.cs5520_inclass_tanvi8146;
 
-import com.example.cs5520_inclass_tanvi8146.practice.Source;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Article implements Serializable {
 

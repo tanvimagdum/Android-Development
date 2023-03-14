@@ -1,4 +1,4 @@
-package com.example.cs5520_inclass_tanvi8146.practice;
+package com.example.cs5520_inclass_tanvi8146;
 
 import java.io.Serializable;
 
