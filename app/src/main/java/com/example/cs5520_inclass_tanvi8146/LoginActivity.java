@@ -22,12 +22,13 @@ public class LoginActivity extends AppCompatActivity {
 
         txtLoginUsername = findViewById(R.id.txtLoginUsername);
         txtLoginPassword = findViewById(R.id.txtLoginPassword);
+        btnLoginLogin = findViewById(R.id.btnLoginLogin);
 
         btnLoginLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(LoginActivity.this, NotesActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this, NotesActivity.class);
+                startActivity(intent);
             }
         });
 

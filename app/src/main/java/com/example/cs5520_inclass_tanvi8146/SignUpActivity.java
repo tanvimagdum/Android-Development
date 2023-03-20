@@ -26,12 +26,13 @@ public class SignUpActivity extends AppCompatActivity {
         txtSignUpName = findViewById(R.id.txtSignUpName);
         txtSignUpEmail = findViewById(R.id.txtSignUpEmail);
         txtSignUpPassword = findViewById(R.id.txtSignUpPassword);
+        btnSignUpSignUp = findViewById(R.id.btnSignUpSignUp);
 
         btnSignUpSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(SignUpActivity.this, NotesActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(SignUpActivity.this, NotesActivity.class);
+                startActivity(intent);
             }
         });
 

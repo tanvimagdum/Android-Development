@@ -48,4 +48,14 @@ public class Note {
     public void set__v(int __v) {
         this.__v = __v;
     }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "userId='" + userId + '\'' +
+                ", text='" + text + '\'' +
+                ", _id='" + _id + '\'' +
+                ", __v=" + __v +
+                '}';
+    }
 }
