@@ -2,6 +2,7 @@ package com.example.cs5520_inclass_tanvi8146;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,8 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUpSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+//                Intent intent = new Intent(SignUpActivity.this, NotesActivity.class);
+//                startActivity(intent);
             }
         });
 
