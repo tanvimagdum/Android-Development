@@ -25,7 +25,35 @@ public class NotesActivity extends AppCompatActivity {
 
         mNotes = new ArrayList<>();
 
-        mNotes.add(new Note("tanvi", "This is note 1", "1", 0));
+        mNotes.add(new Note("tanvi", "This is note 1 " +
+                "\n" +
+                "\n" +
+                "Food —\n" +
+                "\n" +
+                "Lunch :\n" +
+                "1. Puri bhaji shrikhand\n" +
+                "2. Chhole Bhature\n" +
+                "3. Puranpoli\n" +
+                "4. Palak paneer, Naan/Kulcha/Lachha\n" +
+                "\n" +
+                "Dinner :\n" +
+                "1. Pav bhaji\n" +
+                "2. Varan bhat\n" +
+                "3. Dosa chutney\n" +
+                "4. Misal\n" +
+                "5. Noodles/Schezwan rice, Manchurian\n" +
+                "6. Batata Vada\n" +
+                "\n" +
+                "Snacks :\n" +
+                "1. Samosa\n" +
+                "2. Kanda, Batata bhaji\n" +
+                "\n" +
+                "Places —\n" +
+                "1. Lake Raleigh\n" +
+                "2. Walnut Creek Trail\n" +
+                "3. Patel Bros\n" +
+                "4. Deja Vu Thrift Store\n" +
+                "5. NCSU area\n ", "1", 0));
         mNotes.add(new Note("tanvi", "This is note 2", "2", 0));
         mNotes.add(new Note("tanvi", "This is note 3", "3", 0));
         mNotes.add(new Note("tanvi", "This is note 4", "4", 0));
