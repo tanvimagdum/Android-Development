@@ -67,4 +67,20 @@
     <string name="category_spinner_label">Select Category</string>
     <string name="country_spinner_label">Select Country</string>
     <string name="txtNewsHeader">Times Today</string>
+    <string name="btn_InClass_07">InClass 07</string>
+    <string name="btnLogin">Log In</string>
+    <string name="btnSignUp">Sign Up</string>
+    <string name="lblLoginUsername">Username</string>
+    <string name="hintLoginUsername">Type your Username</string>
+    <string name="lblLoginPassword">Password</string>
+    <string name="hintLoginPassword">Type your Password</string>
+    <string name="lblSignUpName">Name</string>
+    <string name="hintSignUpName">Type your Name</string>
+    <string name="lblSignUpEmail">Email</string>
+    <string name="hintSignUpEmail">Type your Email</string>
+    <string name="lblSignUpEmailNote">(This will be your username)</string>
+    <string name="lblSignUpPassword">Password</string>
+    <string name="hintSignUpPassword">Type your Password</string>
+    <string name="btnLoginLogin">Log In</string>
+    <string name="btnSignUpSignUp">Sign Up</string>
 </resources>

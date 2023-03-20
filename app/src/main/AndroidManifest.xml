@@ -17,10 +17,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".DisplayNewsActivity"
+            android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".InClass06Activity"
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InClass07Activity"
+            android:exported="false" />
+        <activity
+            android:name=".inClass06.DisplayNewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".inClass06.InClass06Activity"
             android:exported="false" />
         <activity
             android:name=".inClass05.InClass05Activity"

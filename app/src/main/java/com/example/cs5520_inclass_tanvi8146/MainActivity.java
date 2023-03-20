@@ -12,6 +12,7 @@ import com.example.cs5520_inclass_tanvi8146.inClass02.InClass02Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass03.InClass03HostActivity;
 import com.example.cs5520_inclass_tanvi8146.inClass04.InClass04Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass05.InClass05Activity;
+import com.example.cs5520_inclass_tanvi8146.inClass06.InClass06Activity;
 import com.example.cs5520_inclass_tanvi8146.practice.PracticeActivity;
 
 /*
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Button inClass_04 = findViewById(R.id.inclass04);
         Button inClass_05 = findViewById(R.id.inclass05);
         Button inClass_06 = findViewById(R.id.inclass06);
+        Button inClass_07 = findViewById(R.id.inclass07);
 
         practice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, InClass06Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        inClass_07.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, InClass07Activity.class);
                 startActivity(intent);
             }
         });

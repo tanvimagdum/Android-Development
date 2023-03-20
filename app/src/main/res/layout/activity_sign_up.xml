@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <TextView
+        android:id="@+id/lblSignUpName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/lblSignUpName"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtSignUpName"
+        android:layout_width="260dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/hintSignUpName"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/lblSignUpName"
+        app:layout_constraintTop_toBottomOf="@+id/lblSignUpName" />
+
+    <TextView
+        android:id="@+id/lblSignUpEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lblSignUpEmail"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/txtSignUpName"
+        app:layout_constraintTop_toBottomOf="@+id/txtSignUpName" />
+
+    <TextView
+        android:id="@+id/lblSignUpEmailNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/lblSignUpEmailNote"
+        app:layout_constraintStart_toStartOf="@+id/txtSignUpEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtSignUpEmail" />
+
+    <TextView
+        android:id="@+id/lblSignUpPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lblSignUpPassword"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/lblSignUpEmailNote"
+        app:layout_constraintTop_toBottomOf="@+id/lblSignUpEmailNote" />
+
+    <EditText
+        android:id="@+id/txtSignUpPassword"
+        android:layout_width="260dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/hintSignUpPassword"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/lblSignUpPassword"
+        app:layout_constraintTop_toBottomOf="@+id/lblSignUpPassword" />
+
+    <EditText
+        android:id="@+id/txtSignUpEmail"
+        android:layout_width="260dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/hintSignUpEmail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/lblSignUpEmail"
+        app:layout_constraintTop_toBottomOf="@+id/lblSignUpEmail" />
+
+    <Button
+        android:id="@+id/btnSignUpSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/btnSignUpSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSignUpPassword" />
+</androidx.constraintlayout.widget.ConstraintLayout>
