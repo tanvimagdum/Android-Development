@@ -84,4 +84,7 @@
     <string name="btnLoginLogin">Log In</string>
     <string name="btnSignUpSignUp">Sign Up</string>
     <string name="btnNoteDelete">Delete</string>
+    <string name="hintAddEditNote">Type Note</string>
+    <string name="btnAddNote">Add Note</string>
+    <string name="txtAddEditNoteId">Type ID</string>
 </resources>
