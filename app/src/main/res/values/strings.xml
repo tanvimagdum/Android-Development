@@ -88,4 +88,10 @@
     <string name="btnAddNote">Add Note</string>
     <string name="txtAddEditNoteId">Type ID</string>
     <string name="enteremail">Email</string>
+    <string name="btnNotesProfile">Profile</string>
+    <string name="btnNotesLogout">Log Out</string>
+    <string name="lblNotesProfile">Profile</string>
+    <string name="lblNotesProfileName">Name</string>
+    <string name="lblNotesProfileEmail">Email</string>
+    <string name="lblNotesProfilePassword">Password</string>
 </resources>
