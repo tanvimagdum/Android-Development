@@ -76,6 +76,7 @@ public class AddEditNoteFragment extends Fragment {
                 Note note = new Note();
                 note.setText(txtAddEditNote.getText().toString());
                 mListener.addButtonClicked(note);
+                txtAddEditNote.setText("");
             }
         });
 
