@@ -12,8 +12,5 @@ public class NotesProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notes_profile);
         setTitle("Profile");
 
-
-
-
     }
 }

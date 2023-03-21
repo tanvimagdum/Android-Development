@@ -1,27 +1,48 @@
 package com.example.cs5520_inclass_tanvi8146;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
     private List<Note> mNotes;
+    private static Context ctx;
 
-    public NotesAdapter(List<Note> notes) {
-        mNotes = notes;
+    public NotesAdapter(List<Note> notes, Context ctx) {
+        this.mNotes = notes;
+        this.ctx = ctx;
     }
+
+    private static String authToken = "";
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -56,8 +77,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull NotesAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
+        SharedPreferences sh = this.ctx.getSharedPreferences("sharedpref", MODE_PRIVATE);
+        authToken = sh.getString("authToken","");
         holder.getTxtNotes().setText(mNotes.get(position).getText());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,8 +93,47 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         holder.getBtnNoteDelete().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mNotes.remove(holder.getAdapterPosition());
-                notifyDataSetChanged();
+                OkHttpClient client = new OkHttpClient();
+                RequestBody formBody = new FormBody.Builder().add("id", mNotes.get(holder.getAdapterPosition()).get_id()).build();
+                Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/note/delete").post(formBody).addHeader("x-access-token", authToken).build();
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        CharSequence text = "Cannot delete Note. Please try again!";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(ctx, text, duration);
+                        toast.show();
+                        Toast.makeText(ctx, text, duration);
+                        return;
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        if(response.isSuccessful()) {
+                            try {
+                                JSONObject jsonRes = new JSONObject(response.body().string());
+                                if(jsonRes.getBoolean("posted")){
+                                    mNotes.remove(holder.getAdapterPosition());
+                                    notifyDataSetChanged();
+                                }
+                            } catch (JSONException e) {
+                                CharSequence text = "Cannot delete Note. Please try again!";
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(ctx, text, duration);
+                                toast.show();
+                                Toast.makeText(ctx, text, duration);
+                                return;
+                            }
+                        }else{
+                            CharSequence text = "Cannot delete Note. Please try again!";
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(ctx, text, duration);
+                            toast.show();
+                            Toast.makeText(ctx, text, duration);
+                            return;
+                        }
+                    }
+                });
             }
         });
     }
