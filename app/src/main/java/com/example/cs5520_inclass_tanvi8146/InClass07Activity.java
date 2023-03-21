@@ -3,7 +3,9 @@ package com.example.cs5520_inclass_tanvi8146;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +20,6 @@ import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -87,37 +88,15 @@ public class InClass07Activity extends AppCompatActivity {
                         JSONObject jsonRes = new JSONObject(response.body().string());
                         authenticated = jsonRes.getBoolean("auth");
                         authToken = jsonRes.getString("token");
-                    } catch (JSONException e) {
-                        authenticated = false;
-                        authToken = null;
-                    }
-                }else{
-                    authenticated = false;
-                    authToken = null;
-                }
-
-            }
-        });
-    }
-
-    protected void login(String email, String password){
-        OkHttpClient client = new OkHttpClient();
-        RequestBody formBody = new FormBody.Builder().add("email", email).add("password", password).build();
-        Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/auth/login").post(formBody).build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                authenticated = false;
-                authToken = null;
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if(response.isSuccessful()) {
-                    try {
-                        JSONObject jsonRes = new JSONObject(response.body().string());
-                        authenticated = jsonRes.getBoolean("auth");
-                        authToken = jsonRes.getString("token");
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                SharedPreferences sharedPref = getSharedPreferences("sharedpref", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.putString("authToken", authToken);
+                                editor.apply();
+                            }
+                        });
                     } catch (JSONException e) {
                         authenticated = false;
                         authToken = null;
@@ -222,6 +201,18 @@ public class InClass07Activity extends AppCompatActivity {
                 }else{
                     deleted = false;
                 }
+            }
+        });
+    }
+
+    protected void logout(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences sharedPref = getParent().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("authToken", "");
+                editor.apply();
             }
         });
     }

@@ -1,20 +1,36 @@
 package com.example.cs5520_inclass_tanvi8146;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class NotesActivity extends AppCompatActivity implements AddEditNoteFragment.IAddButtonActions {
 
-    private List<Note> mNotes;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mRecyclerViewLayoutManager;
     private NotesAdapter mAdapter;
+
+    private static Notes notes = new Notes();
+
 
 
     @Override
@@ -22,63 +38,71 @@ public class NotesActivity extends AppCompatActivity implements AddEditNoteFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
         setTitle("Notes App");
+        notes = new Notes();
+        SharedPreferences sh = getSharedPreferences("sharedpref", MODE_PRIVATE);
+        String authToken = sh.getString("authToken","");
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/note/getall").addHeader("x-access-token", authToken).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Cannot get all the Notes. Please try again!";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        Toast.makeText(context, text, duration);
+                        return;
+                    }
+                });
+            }
 
-        mNotes = new ArrayList<>();
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if(response.isSuccessful()) {
+                    Gson gson = new Gson();
+                    Log.d("demo", response.body().string()+" ---");
+                    notes = gson.fromJson(response.body().charStream(), Notes.class);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mRecyclerView = findViewById(R.id.notesRecyclerView);
+                            mRecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
+                            mRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
+                            mAdapter = new NotesAdapter(notes.getNotes());
+                            mRecyclerView.setAdapter(mAdapter);
 
-        mNotes.add(new Note("tanvi", "This is note 1 " +
-                "\n" +
-                "\n" +
-                "Food —\n" +
-                "\n" +
-                "Lunch :\n" +
-                "1. Puri bhaji shrikhand\n" +
-                "2. Chhole Bhature\n" +
-                "3. Puranpoli\n" +
-                "4. Palak paneer, Naan/Kulcha/Lachha\n" +
-                "\n" +
-                "Dinner :\n" +
-                "1. Pav bhaji\n" +
-                "2. Varan bhat\n" +
-                "3. Dosa chutney\n" +
-                "4. Misal\n" +
-                "5. Noodles/Schezwan rice, Manchurian\n" +
-                "6. Batata Vada\n" +
-                "\n" +
-                "Snacks :\n" +
-                "1. Samosa\n" +
-                "2. Kanda, Batata bhaji\n" +
-                "\n" +
-                "Places —\n" +
-                "1. Lake Raleigh\n" +
-                "2. Walnut Creek Trail\n" +
-                "3. Patel Bros\n" +
-                "4. Deja Vu Thrift Store\n" +
-                "5. NCSU area\n ", "1", 0));
+                            getSupportFragmentManager().beginTransaction()
+                                    .add(R.id.addEditNotePanel, AddEditNoteFragment.newInstance(), "add fragment")
+                                    .commit();
+                        }
+                    });
 
-        mNotes.add(new Note("tanvi", "This is note 2", "2", 0));
-        mNotes.add(new Note("tanvi", "This is note 3", "3", 0));
-        mNotes.add(new Note("tanvi", "This is note 4", "4", 0));
-        mNotes.add(new Note("tanvi", "This is note 5", "5", 0));
-        mNotes.add(new Note("tanvi", "This is note 6", "6", 0));
-        mNotes.add(new Note("tanvi", "This is note 7", "7", 0));
-        mNotes.add(new Note("tanvi", "This is note 8", "8", 0));
-        mNotes.add(new Note("tanvi", "This is note 9", "9", 0));
-
-        mRecyclerView = findViewById(R.id.notesRecyclerView);
-        mRecyclerViewLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
-        mAdapter = new NotesAdapter(mNotes);
-        mRecyclerView.setAdapter(mAdapter);
-
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.addEditNotePanel, AddEditNoteFragment.newInstance(), "add fragment")
-                .commit();
+                }else{
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Context context = getApplicationContext();
+                            CharSequence text = "Cannot get all the Notes. Please try again!";
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                            Toast.makeText(context, text, duration);
+                            return;
+                        }
+                    });
+                }
+            }
+        });
 
     }
 
     @Override
     public void addButtonClicked(Note note) {
-        mNotes.add(note);
+        notes.addNotes(note);
         mAdapter.notifyDataSetChanged();
     }
 

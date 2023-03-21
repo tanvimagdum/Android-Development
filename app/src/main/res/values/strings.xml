@@ -87,4 +87,5 @@
     <string name="hintAddEditNote">Type Note</string>
     <string name="btnAddNote">Add Note</string>
     <string name="txtAddEditNoteId">Type ID</string>
+    <string name="enteremail">Email</string>
 </resources>
