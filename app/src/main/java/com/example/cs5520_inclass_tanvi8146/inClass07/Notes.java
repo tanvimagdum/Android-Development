@@ -2,6 +2,12 @@ package com.example.cs5520_inclass_tanvi8146.inClass07;
 
 import java.util.List;
 
+/*
+ * Tanvi Prashant Magdum
+ * Vivek Dantu
+ * Assignment 07
+ */
+
 public class Notes {
     private List<Note> notes;
 

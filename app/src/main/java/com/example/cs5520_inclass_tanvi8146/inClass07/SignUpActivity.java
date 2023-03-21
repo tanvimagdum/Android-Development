@@ -27,6 +27,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/*
+ * Tanvi Prashant Magdum
+ * Vivek Dantu
+ * Assignment 07
+ */
+
 public class SignUpActivity extends AppCompatActivity {
 
     private TextView txtSignUpName;

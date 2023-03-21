@@ -8,6 +8,11 @@ import android.widget.TextView;
 
 import com.example.cs5520_inclass_tanvi8146.R;
 
+/*
+ * Tanvi Prashant Magdum
+ * Vivek Dantu
+ * Assignment 07
+ */
 
 public class NoteDetailActivity extends AppCompatActivity {
 

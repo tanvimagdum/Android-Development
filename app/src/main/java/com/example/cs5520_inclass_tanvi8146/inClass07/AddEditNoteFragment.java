@@ -14,6 +14,12 @@ import android.widget.EditText;
 
 import com.example.cs5520_inclass_tanvi8146.R;
 
+/*
+ * Tanvi Prashant Magdum
+ * Vivek Dantu
+ * Assignment 07
+ */
+
 public class AddEditNoteFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";

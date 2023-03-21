@@ -1,5 +1,11 @@
 package com.example.cs5520_inclass_tanvi8146.inClass07;
 
+/*
+ * Tanvi Prashant Magdum
+ * Vivek Dantu
+ * Assignment 07
+ */
+
 public class Note {
     private String userId;
     private String text;
