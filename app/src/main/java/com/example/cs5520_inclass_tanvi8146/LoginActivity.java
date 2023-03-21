@@ -7,13 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cs5520_inclass_tanvi8146.practice.PracticeActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Context context = getApplicationContext();
-                                CharSequence text = "Cannot Login Please check your email and password!";
+                                CharSequence text = "Cannot Login. Please check your email and password!";
                                 int duration = Toast.LENGTH_SHORT;
                                 Toast toast = Toast.makeText(context, text, duration);
                                 toast.show();

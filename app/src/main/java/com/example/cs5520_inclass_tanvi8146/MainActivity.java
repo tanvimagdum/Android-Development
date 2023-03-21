@@ -3,13 +3,11 @@ package com.example.cs5520_inclass_tanvi8146;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.cs5520_inclass_tanvi8146.inClass01.InClass01Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass02.InClass02Activity;
@@ -18,7 +16,6 @@ import com.example.cs5520_inclass_tanvi8146.inClass04.InClass04Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass05.InClass05Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass06.InClass06Activity;
 import com.example.cs5520_inclass_tanvi8146.practice.PracticeActivity;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
