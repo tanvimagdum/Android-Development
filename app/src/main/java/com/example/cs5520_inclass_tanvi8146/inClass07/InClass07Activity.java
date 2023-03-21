@@ -1,4 +1,4 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass07;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.cs5520_inclass_tanvi8146.R;
 
 
 /*

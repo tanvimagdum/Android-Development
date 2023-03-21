@@ -15,6 +15,8 @@ import com.example.cs5520_inclass_tanvi8146.inClass03.InClass03HostActivity;
 import com.example.cs5520_inclass_tanvi8146.inClass04.InClass04Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass05.InClass05Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass06.InClass06Activity;
+import com.example.cs5520_inclass_tanvi8146.inClass07.InClass07Activity;
+import com.example.cs5520_inclass_tanvi8146.inClass07.NotesActivity;
 import com.example.cs5520_inclass_tanvi8146.practice.PracticeActivity;
 
 import org.json.JSONException;

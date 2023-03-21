@@ -1,4 +1,4 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass07;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cs5520_inclass_tanvi8146.R;
 import com.google.gson.Gson;
 
 import java.io.IOException;

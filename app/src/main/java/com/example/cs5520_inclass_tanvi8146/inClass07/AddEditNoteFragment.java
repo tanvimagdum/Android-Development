@@ -1,4 +1,4 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass07;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.cs5520_inclass_tanvi8146.R;
 
 public class AddEditNoteFragment extends Fragment {
 

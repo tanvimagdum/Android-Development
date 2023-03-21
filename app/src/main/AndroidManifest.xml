@@ -17,22 +17,22 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".NotesProfileActivity"
+            android:name=".inClass07.NotesProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".NoteDetailActivity"
+            android:name=".inClass07.NoteDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".NotesActivity"
+            android:name=".inClass07.NotesActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".inClass07.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".inClass07.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".InClass07Activity"
+            android:name=".inClass07.InClass07Activity"
             android:exported="false" />
         <activity
             android:name=".inClass06.DisplayNewsActivity"

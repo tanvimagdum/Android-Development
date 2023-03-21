@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".inClass07.SignUpActivity">
 
     <TextView
         android:id="@+id/lblSignUpName"

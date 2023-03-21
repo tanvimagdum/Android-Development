@@ -1,4 +1,4 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass07;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.cs5520_inclass_tanvi8146.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

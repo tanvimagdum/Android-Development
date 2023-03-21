@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#BFAFF8"
-    tools:context=".NotesActivity">
+    tools:context=".inClass07.NotesActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/addEditNotePanel"

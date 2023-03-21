@@ -1,4 +1,4 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass07;
 
 import java.util.List;
 
