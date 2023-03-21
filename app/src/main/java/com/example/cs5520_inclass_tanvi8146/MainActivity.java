@@ -1,11 +1,15 @@
 package com.example.cs5520_inclass_tanvi8146;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.cs5520_inclass_tanvi8146.inClass01.InClass01Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass02.InClass02Activity;
@@ -14,6 +18,18 @@ import com.example.cs5520_inclass_tanvi8146.inClass04.InClass04Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass05.InClass05Activity;
 import com.example.cs5520_inclass_tanvi8146.inClass06.InClass06Activity;
 import com.example.cs5520_inclass_tanvi8146.practice.PracticeActivity;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /*
  * Tanvi Prashant Magdum
@@ -95,9 +111,74 @@ public class MainActivity extends AppCompatActivity {
         inClass_07.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, InClass07Activity.class);
-                startActivity(intent);
-            }
+                SharedPreferences sh = getSharedPreferences("sharedpref", MODE_PRIVATE);
+                String authToken = sh.getString("authToken", "");
+                if(!authToken.equals("")){
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/auth/me").addHeader("x-access-token", authToken).build();
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(MainActivity.this, InClass07Activity.class);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            try {
+                                JSONObject jobj = new JSONObject(response.body().string());
+                                if(jobj.has("_id")){
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent intent = new Intent(MainActivity.this, NotesActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+
+                                }else{
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent intent = new Intent(MainActivity.this, InClass07Activity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+
+                                }
+                            } catch (JSONException e) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(MainActivity.this, InClass07Activity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+
+                            }
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(MainActivity.this, InClass07Activity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }
+                });
+            }else{
+                    Intent intent = new Intent(MainActivity.this, InClass07Activity.class);
+                    startActivity(intent);
+                }
+                }
+
         });
 
 
