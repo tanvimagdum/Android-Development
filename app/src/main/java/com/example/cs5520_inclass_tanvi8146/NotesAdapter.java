@@ -1,11 +1,13 @@
 package com.example.cs5520_inclass_tanvi8146;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,20 +25,21 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView txtNotes;
+        private TextView txtNotes;
+        private Button btnNoteDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtNotes = itemView.findViewById(R.id.txtNotes);
+            btnNoteDelete = itemView.findViewById(R.id.btnNoteDelete);
         }
 
         public TextView getTxtNotes() {
             return txtNotes;
         }
-
-        public void setTxtNotes(TextView txtNotes) {
-            this.txtNotes = txtNotes;
+        public Button getBtnNoteDelete() {
+            return btnNoteDelete;
         }
 
     }
@@ -51,7 +54,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NotesAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NotesAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.getTxtNotes().setText(mNotes.get(position).getText());
 
@@ -62,6 +65,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                 Intent intent = new Intent(context, NoteDetailActivity.class);
                 intent.putExtra("note", mNotes.get(position).getText());
                 context.startActivity(intent);
+            }
+        });
+
+        holder.getBtnNoteDelete().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mNotes.remove(holder.getAdapterPosition());
+                notifyDataSetChanged();
             }
         });
     }

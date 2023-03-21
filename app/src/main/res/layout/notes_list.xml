@@ -8,24 +8,25 @@
 
     <TextView
         android:id="@+id/txtNotes"
-        android:layout_width="302dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblNotes"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/lblNotes"
+    <Button
+        android:id="@+id/btnNoteDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Note :"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="16dp"
+        android:text="@string/btnNoteDelete"
+        app:layout_constraintBottom_toBottomOf="@+id/txtNotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtNotes"
+        app:layout_constraintTop_toTopOf="@+id/txtNotes" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
