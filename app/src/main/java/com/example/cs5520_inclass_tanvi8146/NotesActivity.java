@@ -77,7 +77,7 @@ public class NotesActivity extends AppCompatActivity implements AddEditNoteFragm
                             mRecyclerView = findViewById(R.id.notesRecyclerView);
                             mRecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
                             mRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
-                            mAdapter = new NotesAdapter(notes.getNotes());
+                            mAdapter = new NotesAdapter(notes.getNotes(), getApplicationContext());
                             mRecyclerView.setAdapter(mAdapter);
 
                             getSupportFragmentManager().beginTransaction()
@@ -132,10 +132,13 @@ public class NotesActivity extends AppCompatActivity implements AddEditNoteFragm
                 if(response.isSuccessful()) {
                     try {
                         JSONObject jsonRes = new JSONObject(response.body().string());
+                        JSONObject newNote = jsonRes.getJSONObject("note");
+                        String newId = newNote.getString("_id");
                         if(jsonRes.getBoolean("posted")){
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    note.set_id(newId);
                                     notes.addNotes(note);
                                     mAdapter.notifyDataSetChanged();
                                 }
