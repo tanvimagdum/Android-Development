@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -45,7 +46,11 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUpSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtSignUpEmail.getText().toString().trim().equals("") || txtSignUpName.getText().toString().trim().equals("") || txtSignUpPassword.getText().toString().trim().equals("")){
+                if(txtSignUpEmail.getText().toString().trim().equals("") ||
+                        txtSignUpName.getText().toString().trim().equals("") ||
+                        txtSignUpPassword.getText().toString().trim().equals("") ||
+                        !(Patterns.EMAIL_ADDRESS.matcher(txtSignUpEmail.getText().toString()).matches())) {
+
                     Context context = getApplicationContext();
                     CharSequence text = "Cannot Sign up. Enter proper username or email or password!";
                     int duration = Toast.LENGTH_SHORT;
@@ -53,10 +58,21 @@ public class SignUpActivity extends AppCompatActivity {
                     toast.show();
                     Toast.makeText(context, text, duration);
                     return;
+
                 }
+
                 OkHttpClient client = new OkHttpClient();
-                RequestBody formBody = new FormBody.Builder().add("name", txtSignUpName.getText().toString()).add("email", txtSignUpEmail.getText().toString()).add("password", txtSignUpPassword.getText().toString()).build();
-                Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/auth/register").post(formBody).build();
+                RequestBody formBody = new FormBody.Builder()
+                        .add("name", txtSignUpName.getText().toString())
+                        .add("email", txtSignUpEmail.getText().toString())
+                        .add("password", txtSignUpPassword.getText().toString())
+                        .build();
+
+                Request request = new Request.Builder()
+                        .url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/auth/register")
+                        .post(formBody)
+                        .build();
+
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -85,7 +101,8 @@ public class SignUpActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             Context context = getApplicationContext();
-                                            CharSequence text = "Cannot Sign up. Maybe the username and email has already been taken!";
+                                            CharSequence text = "Cannot Sign up. " +
+                                                    "Maybe the username and email has already been taken!";
                                             int duration = Toast.LENGTH_SHORT;
                                             Toast toast = Toast.makeText(context, text, duration);
                                             toast.show();
@@ -107,7 +124,8 @@ public class SignUpActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         Context context = getApplicationContext();
-                                        CharSequence text = "Cannot Sign up. Maybe the username and email has already been taken!";
+                                        CharSequence text = "Cannot Sign up. " +
+                                                "Maybe the username and email has already been taken!";
                                         int duration = Toast.LENGTH_SHORT;
                                         Toast toast = Toast.makeText(context, text, duration);
                                         toast.show();
@@ -121,7 +139,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Context context = getApplicationContext();
-                                    CharSequence text = "Cannot Sign up. Maybe the username and email has already been taken!";
+                                    CharSequence text = "Cannot Sign up. " +
+                                            "Maybe the username and email has already been taken!";
                                     int duration = Toast.LENGTH_SHORT;
                                     Toast toast = Toast.makeText(context, text, duration);
                                     toast.show();
@@ -130,11 +149,9 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                             });
                         }
-
                     }
                 });
             }
         });
-
     }
 }

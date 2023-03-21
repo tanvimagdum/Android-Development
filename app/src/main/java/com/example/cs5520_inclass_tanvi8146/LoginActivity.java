@@ -47,7 +47,10 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtLoginUsername.getText().toString().trim().equals("") || txtLoginPassword.getText().toString().trim().equals("")){
+
+                if(txtLoginUsername.getText().toString().trim().equals("") ||
+                        txtLoginPassword.getText().toString().trim().equals("")){
+
                     Context context = getApplicationContext();
                     CharSequence text = "Cannot Login. Enter proper email or password!";
                     int duration = Toast.LENGTH_SHORT;
@@ -55,16 +58,28 @@ public class LoginActivity extends AppCompatActivity {
                     toast.show();
                     Toast.makeText(context, text, duration);
                     return;
+
                 }
+
                 OkHttpClient client = new OkHttpClient();
-                RequestBody formBody = new FormBody.Builder().add("email", txtLoginUsername.getText().toString()).add("password", txtLoginPassword.getText().toString()).build();
-                Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/auth/login").post(formBody).build();
+
+                RequestBody formBody = new FormBody.Builder()
+                        .add("email", txtLoginUsername.getText().toString())
+                        .add("password", txtLoginPassword.getText().toString())
+                        .build();
+
+                Request request = new Request.Builder()
+                        .url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/auth/login")
+                        .post(formBody)
+                        .build();
+
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+
                                 Context context = getApplicationContext();
                                 CharSequence text = "Cannot Login. Please check your email and password!";
                                 int duration = Toast.LENGTH_SHORT;
@@ -72,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                                 toast.show();
                                 Toast.makeText(context, text, duration);
                                 return;
+
                             }
                         });
                     }
@@ -83,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                                 JSONObject jsonRes = new JSONObject(response.body().string());
                                 authenticated = jsonRes.getBoolean("auth");
                                 authToken = jsonRes.getString("token");
+
                                 if(authenticated){
                                     SharedPreferences sharedPref = getSharedPreferences("sharedpref", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPref.edit();
@@ -95,7 +112,8 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(intent);
                                         }
                                     });
-                                }else{
+                                }
+                                else{
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
@@ -124,7 +142,8 @@ public class LoginActivity extends AppCompatActivity {
                                 });
 
                             }
-                        }else{
+                        }
+                        else{
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -143,11 +162,5 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
-
-
-    }
-
-    protected void login(String email, String password){
-
     }
 }

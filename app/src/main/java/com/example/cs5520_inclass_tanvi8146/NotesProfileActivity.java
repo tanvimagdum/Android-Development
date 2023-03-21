@@ -29,16 +29,24 @@ public class NotesProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_profile);
         setTitle("Profile");
+
         txtNotesProfileName = findViewById(R.id.txtNotesProfileName);
         txtNotesProfileEmail = findViewById(R.id.txtNotesProfileEmail);
         txtNotesProfilePassword = findViewById(R.id.txtNotesProfilePassword);
+
         SharedPreferences sh = getSharedPreferences("sharedpref", MODE_PRIVATE);
         authToken = sh.getString("authToken","");
+
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/auth/me").addHeader("x-access-token", authToken).build();
+        Request request = new Request.Builder()
+                .url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/auth/me")
+                .addHeader("x-access-token", authToken)
+                .build();
+
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -69,7 +77,8 @@ public class NotesProfileActivity extends AppCompatActivity {
                             txtNotesProfilePassword.setText(user.get_id());
                         }
                     });
-                }else{
+                }
+                else{
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

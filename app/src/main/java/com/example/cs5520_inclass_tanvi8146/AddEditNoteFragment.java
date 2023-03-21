@@ -12,12 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddEditNoteFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddEditNoteFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -27,14 +21,12 @@ public class AddEditNoteFragment extends Fragment {
     private IAddButtonActions mListener;
 
     public AddEditNoteFragment() {
-        // Required empty public constructor
+
     }
 
     public static AddEditNoteFragment newInstance() {
         AddEditNoteFragment fragment = new AddEditNoteFragment();
         Bundle args = new Bundle();
-        //        args.putString(ARG_PARAM1, param1);
-        //        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,14 +35,14 @@ public class AddEditNoteFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            //            note = getArguments().getString(ARG_PARAM1);
+
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_add_edit_note, container, false);
         EditText txtAddEditNote = view.findViewById(R.id.txtAddEditNote);
         Button btnAddEditNote = view.findViewById(R.id.btnAddEditNote);
@@ -82,7 +74,5 @@ public class AddEditNoteFragment extends Fragment {
     public interface IAddButtonActions {
         void addButtonClicked(Note note);
     }
-
-
 
 }

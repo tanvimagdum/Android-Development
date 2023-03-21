@@ -70,6 +70,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.notes_list, parent, false);
         return new ViewHolder(itemView);
+
     }
 
     @Override
@@ -92,9 +93,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         holder.getBtnNoteDelete().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 OkHttpClient client = new OkHttpClient();
-                RequestBody formBody = new FormBody.Builder().add("id", mNotes.get(holder.getAdapterPosition()).get_id()).build();
-                Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/note/delete").post(formBody).addHeader("x-access-token", authToken).build();
+                RequestBody formBody = new FormBody.Builder()
+                        .add("id", mNotes.get(holder.getAdapterPosition()).get_id())
+                        .build();
+
+                Request request = new Request.Builder()
+                        .url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/note/delete")
+                        .post(formBody)
+                        .addHeader("x-access-token", authToken)
+                        .build();
+
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {

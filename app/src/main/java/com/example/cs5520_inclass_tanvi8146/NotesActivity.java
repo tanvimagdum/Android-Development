@@ -48,14 +48,17 @@ public class NotesActivity extends AppCompatActivity implements AddEditNoteFragm
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 SharedPreferences sharedPref = getSharedPreferences("sharedpref", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("authToken", "");
                 editor.apply();
                 Intent intent1 = new Intent(NotesActivity.this, InClass07Activity.class);
                 startActivity(intent1);
+
             }
         });
+
         profile = findViewById(R.id.btnNotesProfile);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,18 +67,27 @@ public class NotesActivity extends AppCompatActivity implements AddEditNoteFragm
                 startActivity(intent1);
             }
         });
+
         setTitle("Notes App");
         notes = new Notes();
+
         SharedPreferences sh = getSharedPreferences("sharedpref", MODE_PRIVATE);
         authToken = sh.getString("authToken","");
+
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/note/getall").addHeader("x-access-token", authToken).build();
+
+        Request request = new Request.Builder()
+                .url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/note/getall")
+                .addHeader("x-access-token", authToken)
+                .build();
+
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
                         Context context = getApplicationContext();
                         CharSequence text = "Cannot get all the Notes. Please try again!";
                         int duration = Toast.LENGTH_SHORT;
@@ -83,6 +95,7 @@ public class NotesActivity extends AppCompatActivity implements AddEditNoteFragm
                         toast.show();
                         Toast.makeText(context, text, duration);
                         return;
+
                     }
                 });
             }
@@ -90,6 +103,7 @@ public class NotesActivity extends AppCompatActivity implements AddEditNoteFragm
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if(response.isSuccessful()) {
+
                     Gson gson = new Gson();
                     notes = gson.fromJson(response.body().charStream(), Notes.class);
                     runOnUiThread(new Runnable() {
@@ -107,7 +121,8 @@ public class NotesActivity extends AppCompatActivity implements AddEditNoteFragm
                         }
                     });
 
-                }else{
+                }
+                else{
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -128,9 +143,16 @@ public class NotesActivity extends AppCompatActivity implements AddEditNoteFragm
 
     @Override
     public void addButtonClicked(Note note) {
+
         OkHttpClient client = new OkHttpClient();
         RequestBody formBody = new FormBody.Builder().add("text", note.getText()).build();
-        Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/note/post").post(formBody).addHeader("x-access-token", authToken).build();
+
+        Request request = new Request.Builder()
+                .url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/note/post")
+                .post(formBody)
+                .addHeader("x-access-token", authToken)
+                .build();
+
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
