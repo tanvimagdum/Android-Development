@@ -3,11 +3,14 @@ package com.example.cs5520_inclass_tanvi8146;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONException;
@@ -80,6 +84,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         SharedPreferences sh = this.ctx.getSharedPreferences("sharedpref", MODE_PRIVATE);
         authToken = sh.getString("authToken","");
         holder.getTxtNotes().setText(mNotes.get(position).getText());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,24 +104,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                        CharSequence text = "Cannot delete Note. Please try again!";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(ctx, text, duration);
-                        toast.show();
-                        Toast.makeText(ctx, text, duration);
-                        return;
-                    }
-
-                    @Override
-                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                        if(response.isSuccessful()) {
-                            try {
-                                JSONObject jsonRes = new JSONObject(response.body().string());
-                                if(jsonRes.getBoolean("posted")){
-                                    mNotes.remove(holder.getAdapterPosition());
-                                    notifyDataSetChanged();
-                                }
-                            } catch (JSONException e) {
+                        holder.itemView.post(new Runnable() {
+                            @Override
+                            public void run() {
                                 CharSequence text = "Cannot delete Note. Please try again!";
                                 int duration = Toast.LENGTH_SHORT;
                                 Toast toast = Toast.makeText(ctx, text, duration);
@@ -124,13 +114,54 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                                 Toast.makeText(ctx, text, duration);
                                 return;
                             }
+                        });
+
+
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        if(response.isSuccessful()) {
+                            try {
+                                JSONObject jsonRes = new JSONObject(response.body().string());
+                                if(jsonRes.getBoolean("delete")){
+                                    holder.itemView.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            mNotes.remove(holder.getAdapterPosition());
+                                            notifyDataSetChanged();
+                                        }
+                                    });
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                holder.itemView.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        CharSequence text = "Cannot delete Note. Please try again!";
+                                        int duration = Toast.LENGTH_SHORT;
+                                        Toast toast = Toast.makeText(ctx, text, duration);
+                                        toast.show();
+                                        Toast.makeText(ctx, text, duration);
+                                        return;
+                                    }
+                                });
+
+                            }
                         }else{
-                            CharSequence text = "Cannot delete Note. Please try again!";
-                            int duration = Toast.LENGTH_SHORT;
-                            Toast toast = Toast.makeText(ctx, text, duration);
-                            toast.show();
-                            Toast.makeText(ctx, text, duration);
-                            return;
+
+                            holder.itemView.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    CharSequence text = "Cannot delete Note. Please try again!";
+                                    int duration = Toast.LENGTH_SHORT;
+                                    Toast toast = Toast.makeText(ctx, text, duration);
+                                    toast.show();
+                                    Toast.makeText(ctx, text, duration);
+                                    return;
+                                }
+                            });
                         }
                     }
                 });
