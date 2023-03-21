@@ -6,7 +6,7 @@ public class Note {
     private String _id;
     private int __v;
 
-    public Note(String userId, String text, String _id, int __v) {
+    public Note(String _id, String userId, String text, int __v) {
         this.userId = userId;
         this.text = text;
         this._id = _id;

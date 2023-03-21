@@ -10,7 +10,7 @@ public class Notes {
     }
 
     public Notes(List<Note> notes) {
-        notes = notes;
+        this.notes = notes;
     }
 
     public List<Note> getNotes() {
@@ -18,7 +18,7 @@ public class Notes {
     }
 
     public void setNotes(List<Note> notes) {
-        notes = notes;
+        this.notes = notes;
     }
 
     public void addNotes(Note note){

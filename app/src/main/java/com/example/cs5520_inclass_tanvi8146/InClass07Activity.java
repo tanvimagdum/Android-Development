@@ -131,8 +131,7 @@ public class InClass07Activity extends AppCompatActivity {
         });
     }
 
-    protected void getAllNotes(String authToken){
-        OkHttpClient client = new OkHttpClient();
+    protected void getAllNotes(String authToken){OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url("http://ec2-54-164-201-39.compute-1.amazonaws.com:3000/api/note/getall").addHeader("x-access-token", authToken).build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -150,6 +149,7 @@ public class InClass07Activity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     protected void addNote(String authToken, String note){

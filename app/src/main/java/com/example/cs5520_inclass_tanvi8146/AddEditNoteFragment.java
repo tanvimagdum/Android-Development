@@ -1,16 +1,32 @@
 package com.example.cs5520_inclass_tanvi8146;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,8 +48,8 @@ public class AddEditNoteFragment extends Fragment {
     public static AddEditNoteFragment newInstance() {
         AddEditNoteFragment fragment = new AddEditNoteFragment();
         Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
+        //        args.putString(ARG_PARAM1, param1);
+        //        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,7 +58,7 @@ public class AddEditNoteFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-//            note = getArguments().getString(ARG_PARAM1);
+            //            note = getArguments().getString(ARG_PARAM1);
         }
     }
 
@@ -60,8 +76,6 @@ public class AddEditNoteFragment extends Fragment {
                 Note note = new Note();
                 note.setText(txtAddEditNote.getText().toString());
                 mListener.addButtonClicked(note);
-
-                note.setText("");
             }
         });
 
@@ -82,5 +96,7 @@ public class AddEditNoteFragment extends Fragment {
     public interface IAddButtonActions {
         void addButtonClicked(Note note);
     }
+
+
 
 }
