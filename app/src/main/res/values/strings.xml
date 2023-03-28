@@ -95,4 +95,25 @@
     <string name="lblNotesProfileEmail">Email</string>
     <string name="lblNotesProfilePassword">Password</string>
     <string name="user_id">User id</string>
+    <string name="lblFirebaseLoginUsername">Username</string>
+    <string name="hintFirebaseLoginUsername">Type Registered Email</string>
+    <string name="lblFirebaseLoginPwd">Password</string>
+    <string name="hintFirebaseLoginPwd">Type Password</string>
+    <string name="btnFirebaseLogin">Login</string>
+    <string name="lblFirebaseLoginNote">Don\'t have an account?</string>
+    <string name="btnFirebaseLoginRegister">Register</string>
+    <string name="lblFirebaseRegisterFName">First Name</string>
+    <string name="hintFirebaseRegisterFName">Type First Name</string>
+    <string name="lblFirebaseRegisterLName">Last Name</string>
+    <string name="hintFirebaseRegisterLName">Type Last Name</string>
+    <string name="lblFirebaseRegisterDisplayName">Display Name</string>
+    <string name="hintFirebaseRegisterDisplayName">Type Display Name</string>
+    <string name="lblFirebaseRegisterEmail">Email</string>
+    <string name="hintFirebaseRegisterEmail">Type Email</string>
+    <string name="lblFirebaseRegisterPwd">Password</string>
+    <string name="hintFirebaseRegisterPwd">Type Password</string>
+    <string name="lblFirebaseRegisterRePwd">Re-enter Password</string>
+    <string name="hintFirebaseRegisterRePwd">Re-type Password</string>
+    <string name="btnFirebaseRegister">Register</string>
+    <string name="btn_InClass_08">InClass 08</string>
 </resources>

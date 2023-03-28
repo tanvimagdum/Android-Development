@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:id="@+id/lblFirebaseRegisterFName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="70dp"
+        android:text="@string/lblFirebaseRegisterFName"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtFirebaseRegisterFName"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hintFirebaseRegisterFName"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/lblFirebaseRegisterFName"
+        app:layout_constraintTop_toBottomOf="@+id/lblFirebaseRegisterFName" />
+
+    <TextView
+        android:id="@+id/lblFirebaseRegisterLName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lblFirebaseRegisterLName"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/txtFirebaseRegisterFName"
+        app:layout_constraintTop_toBottomOf="@+id/txtFirebaseRegisterFName" />
+
+    <EditText
+        android:id="@+id/txtFirebaseRegisterLName"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hintFirebaseRegisterLName"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/lblFirebaseRegisterLName"
+        app:layout_constraintTop_toBottomOf="@+id/lblFirebaseRegisterLName" />
+
+    <TextView
+        android:id="@+id/lblFirebaseRegisterDisplayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lblFirebaseRegisterDisplayName"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/txtFirebaseRegisterLName"
+        app:layout_constraintTop_toBottomOf="@+id/txtFirebaseRegisterLName" />
+
+    <EditText
+        android:id="@+id/txtFirebaseRegisterUsername"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hintFirebaseRegisterDisplayName"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/lblFirebaseRegisterDisplayName"
+        app:layout_constraintTop_toBottomOf="@+id/lblFirebaseRegisterDisplayName" />
+
+    <TextView
+        android:id="@+id/lblFirebaseRegisterEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lblFirebaseRegisterEmail"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/txtFirebaseRegisterUsername"
+        app:layout_constraintTop_toBottomOf="@+id/txtFirebaseRegisterUsername" />
+
+    <EditText
+        android:id="@+id/txtFirebaseRegisterEmail"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hintFirebaseRegisterEmail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/lblFirebaseRegisterEmail"
+        app:layout_constraintTop_toBottomOf="@+id/lblFirebaseRegisterEmail" />
+
+    <TextView
+        android:id="@+id/lblFirebaseRegisterPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lblFirebaseRegisterPwd"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/txtFirebaseRegisterEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtFirebaseRegisterEmail" />
+
+    <EditText
+        android:id="@+id/txtFirebaseRegisterPwd"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hintFirebaseRegisterPwd"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/lblFirebaseRegisterPwd"
+        app:layout_constraintTop_toBottomOf="@+id/lblFirebaseRegisterPwd" />
+
+    <TextView
+        android:id="@+id/lblFirebaseRegisterRePwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lblFirebaseRegisterRePwd"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/txtFirebaseRegisterPwd"
+        app:layout_constraintTop_toBottomOf="@+id/txtFirebaseRegisterPwd" />
+
+    <EditText
+        android:id="@+id/txtFirebaseRegisterRePwd"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hintFirebaseRegisterRePwd"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/lblFirebaseRegisterRePwd"
+        app:layout_constraintTop_toBottomOf="@+id/lblFirebaseRegisterRePwd" />
+
+    <Button
+        android:id="@+id/btnFirebaseRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/btnFirebaseRegister"
+        app:layout_constraintEnd_toEndOf="@+id/txtFirebaseRegisterRePwd"
+        app:layout_constraintStart_toStartOf="@+id/txtFirebaseRegisterRePwd"
+        app:layout_constraintTop_toBottomOf="@+id/txtFirebaseRegisterRePwd" />
+</androidx.constraintlayout.widget.ConstraintLayout>

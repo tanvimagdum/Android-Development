@@ -17,6 +17,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MessengerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InClass08Activity"
+            android:exported="false" />
+        <activity
             android:name=".inClass07.NotesProfileActivity"
             android:exported="false" />
         <activity

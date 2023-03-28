@@ -30,4 +30,5 @@ public class Notes {
     public void addNotes(Note note){
         this.getNotes().add(note);
     }
+
 }

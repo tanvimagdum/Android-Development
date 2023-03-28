@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InClass08Activity">
+
+    <TextView
+        android:id="@+id/lblFirebaseUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/lblFirebaseLoginUsername"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtFirebaseLoginUsername"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/hintFirebaseLoginUsername"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/lblFirebaseUsername"
+        app:layout_constraintTop_toBottomOf="@+id/lblFirebaseUsername" />
+
+    <TextView
+        android:id="@+id/lblFirebaseLoginPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/lblFirebaseLoginPwd"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/txtFirebaseLoginUsername"
+        app:layout_constraintTop_toBottomOf="@+id/txtFirebaseLoginUsername" />
+
+    <EditText
+        android:id="@+id/txtFirebaseLoginPwd"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/hintFirebaseLoginPwd"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/lblFirebaseLoginPwd"
+        app:layout_constraintTop_toBottomOf="@+id/lblFirebaseLoginPwd" />
+
+    <Button
+        android:id="@+id/btnFirebaseLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/btnFirebaseLogin"
+        app:layout_constraintEnd_toEndOf="@+id/txtFirebaseLoginPwd"
+        app:layout_constraintStart_toStartOf="@+id/txtFirebaseLoginPwd"
+        app:layout_constraintTop_toBottomOf="@+id/txtFirebaseLoginPwd" />
+
+    <TextView
+        android:id="@+id/lblFirebaseLoginNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lblFirebaseLoginNote"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/btnFirebaseLogin"
+        app:layout_constraintStart_toStartOf="@+id/btnFirebaseLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnFirebaseLogin" />
+
+    <Button
+        android:id="@+id/btnFirebaseLoginRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/btnFirebaseLoginRegister"
+        app:layout_constraintEnd_toEndOf="@+id/lblFirebaseLoginNote"
+        app:layout_constraintStart_toStartOf="@+id/lblFirebaseLoginNote"
+        app:layout_constraintTop_toBottomOf="@+id/lblFirebaseLoginNote" />
+</androidx.constraintlayout.widget.ConstraintLayout>
