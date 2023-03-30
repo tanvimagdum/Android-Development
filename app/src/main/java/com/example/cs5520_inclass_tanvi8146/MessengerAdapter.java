@@ -1,62 +1,120 @@
 package com.example.cs5520_inclass_tanvi8146;
 
-import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MessengerAdapter extends RecyclerView.Adapter<MessengerAdapter.ViewHolder> {
+public class MessengerAdapter extends FirestoreRecyclerAdapter<Message, MessengerAdapter.MessageViewHolder> {
 
-    private List<Message> mMessages;
+    private static final int MESSAGE_SENT = 1;
+    private static final int MESSAGE_RECEIVED = 2;
+
     private String currentUserId;
-    private Context ctx;
 
-    public MessengerAdapter(List<Message> mMessages, String currentUserId, Context ctx) {
-        this.mMessages = mMessages;
+    public MessengerAdapter(@NonNull FirestoreRecyclerOptions<Message> options, String currentUserId) {
+        super(options);
         this.currentUserId = currentUserId;
-        this.ctx = ctx;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView messageText;
-        private ImageButton imgbtnSendMessage;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            messageText = itemView.findViewById(R.id.txtMessengerChat);
-            imgbtnSendMessage = itemView.findViewById(R.id.imgbtnSendMessage);
+    @Override
+    protected void onBindViewHolder(@NonNull MessageViewHolder holder, int position, @NonNull Message model) {
+        if (model.getSenderId().equals(currentUserId)) {
+            holder.bindSentMessage(model);
+        } else {
+            holder.bindReceivedMessage(model);
         }
-
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.messenger_list, parent, false);
-        return new ViewHolder(view);
+    public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view;
+        if (viewType == MESSAGE_SENT) {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.messenger_list_sent, parent, false);
+            return new SentMessageViewHolder(view);
+        } else {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.messenger_list_received, parent, false);
+            return new ReceivedMessageViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Message message = mMessages.get(position);
-
-
+    public int getItemViewType(int position) {
+        Message message = getItem(position);
+        if (message.getSenderId().equals(currentUserId)) {
+            return MESSAGE_SENT;
+        } else {
+            return MESSAGE_RECEIVED;
+        }
     }
 
-    @Override
-    public int getItemCount() {
-        return mMessages.size();
+    public static class MessageViewHolder extends RecyclerView.ViewHolder {
+        public MessageViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+
+        public void bindSentMessage(Message message) {}
+        public void bindReceivedMessage(Message message) {}
+    }
+
+    public static class SentMessageViewHolder extends MessageViewHolder {
+        private TextView messageText;
+
+        public SentMessageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            messageText = itemView.findViewById(R.id.txtMessengerChatSent);
+        }
+
+        @Override
+        public void bindSentMessage(Message message) {
+            messageText.setText(message.getTextMessage());
+        }
+    }
+
+    public static class ReceivedMessageViewHolder extends MessageViewHolder {
+        private TextView messageText;
+        private TextView senderName;
+
+        public ReceivedMessageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            messageText = itemView.findViewById(R.id.txtMessengerChatReceived);
+            senderName = itemView.findViewById(R.id.txtMessengerChatFriend);
+        }
+
+        @Override
+        public void bindReceivedMessage(Message message) {
+            messageText.setText(message.getTextMessage());
+            FirebaseFirestore.getInstance().collection("users").document(message.getSenderId()).get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            if (documentSnapshot.exists()) {
+                                String sender = documentSnapshot.getString("firstName");
+                                senderName.setText(sender);
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("TAG", "Failed to retrieve sender's user object: " + e.getMessage());
+                        }
+                    });
+
+        }
     }
 }

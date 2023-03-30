@@ -1,7 +1,5 @@
 package com.example.cs5520_inclass_tanvi8146;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +10,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 
 public class ChatListAdapter extends FirestoreRecyclerAdapter<User, ChatListAdapter.ChatListViewHolder> {
 
-    public ChatListAdapter(@NonNull FirestoreRecyclerOptions<User> options) {
+    private OnUserClickListener mOnUserClickListener;
+
+    public ChatListAdapter(@NonNull FirestoreRecyclerOptions<User> options, OnUserClickListener onUserClickListener) {
         super(options);
+        mOnUserClickListener = onUserClickListener;
     }
 
     @Override
     protected void onBindViewHolder(@NonNull ChatListViewHolder holder, int position, @NonNull User model) {
         holder.bind(model);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DocumentSnapshot documentSnapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
+                String friendId = documentSnapshot.getId();
+
+                mOnUserClickListener.onUserClick(friendId);
+            }
+        });
     }
 
     @NonNull
@@ -47,5 +55,9 @@ public class ChatListAdapter extends FirestoreRecyclerAdapter<User, ChatListAdap
         public void bind(User user) {
             name.setText(user.getFirstName());
         }
+    }
+
+    public interface OnUserClickListener {
+        void onUserClick(String friendId);
     }
 }

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity implements ChatListAdapter.OnUserClickListener {
 
     private RecyclerView recyclerView;
     private ChatListAdapter adapter;
@@ -50,10 +50,22 @@ public class ChatActivity extends AppCompatActivity {
                 .setQuery(query, User.class)
                 .build();
 
-        adapter = new ChatListAdapter(options);
+        adapter = new ChatListAdapter(options, this);
         recyclerView.setAdapter(adapter);
 
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -76,4 +88,12 @@ public class ChatActivity extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
+
+    @Override
+    public void onUserClick(String friendId) {
+        Intent intent = new Intent(this, MessengerActivity.class);
+        intent.putExtra("friendId", friendId);
+        startActivity(intent);
+    }
+
 }
