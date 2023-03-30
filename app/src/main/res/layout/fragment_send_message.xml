@@ -5,7 +5,7 @@
     android:id="@+id/frameLayoutMessage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sendMessageFragment" >
+    tools:context=".inClass08.sendMessageFragment" >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

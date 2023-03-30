@@ -1,4 +1,4 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass08;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cs5520_inclass_tanvi8146.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 08
+ */
 
 public class ChatListAdapter extends FirestoreRecyclerAdapter<User, ChatListAdapter.ChatListViewHolder> {
 

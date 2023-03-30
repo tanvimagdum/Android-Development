@@ -1,6 +1,11 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass08;
 
 import java.util.List;
+
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 08
+ */
 
 public class Messages {
 

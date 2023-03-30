@@ -1,4 +1,4 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass08;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,13 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.example.cs5520_inclass_tanvi8146.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,6 +21,11 @@ import com.google.firebase.firestore.Query;
 
 import java.util.Arrays;
 import java.util.Date;
+
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 08
+ */
 
 public class MessengerActivity extends AppCompatActivity implements sendMessageFragment.ISendMessageAction {
 
@@ -85,7 +86,7 @@ public class MessengerActivity extends AppCompatActivity implements sendMessageF
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG", "Error adding message to Firestore", e);
+                        Toast.makeText(getApplicationContext(), "Error adding message to Firestore", Toast.LENGTH_SHORT).show();
                     }
                 });
 

@@ -1,4 +1,4 @@
-package com.example.cs5520_inclass_tanvi8146;
+package com.example.cs5520_inclass_tanvi8146.inClass08;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,7 +12,13 @@ import android.view.ViewGroup;
 
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
+
+import com.example.cs5520_inclass_tanvi8146.R;
+
+/*
+ * Tanvi Prashant Magdum
+ * Assignment 08
+ */
 
 
 public class sendMessageFragment extends Fragment {

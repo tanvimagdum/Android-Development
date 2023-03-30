@@ -17,16 +17,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ChatActivity"
+            android:name=".inClass08.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".MessengerActivity"
+            android:name=".inClass08.MessengerActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".inClass08.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".InClass08Activity"
+            android:name=".inClass08.InClass08Activity"
             android:exported="false" />
         <activity
             android:name=".inClass07.NotesProfileActivity"
