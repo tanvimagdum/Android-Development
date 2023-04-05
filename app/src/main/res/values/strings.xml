@@ -116,4 +116,12 @@
     <string name="hintFirebaseRegisterRePwd">Re-type Password</string>
     <string name="btnFirebaseRegister">Register</string>
     <string name="btn_InClass_08">InClass 08</string>
+    <string name="contentDesProfileImage">Select Photo</string>
+    <string name="btnFirebaseEditProfile">Edit Profile</string>
+    <string name="lblFirebaseProfileFName">First Name</string>
+    <string name="hintFirebaseProfileFName">Edit first name</string>
+    <string name="lblFirebaseProfileLName">Last Name</string>
+    <string name="hintFirebaseProfileLName">Edit last name</string>
+    <string name="lblFirebaseProfileEmail">Email</string>
+    <string name="btnFirebaseSaveProfile">Save Profile</string>
 </resources>

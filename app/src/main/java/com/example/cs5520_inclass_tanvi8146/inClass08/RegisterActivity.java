@@ -1,13 +1,27 @@
 package com.example.cs5520_inclass_tanvi8146.inClass08;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +35,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,8 +55,29 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView txtFirebaseRegisterPwd;
     private TextView txtFirebaseRegisterRePwd;
     private Button btnFirebaseRegister;
+    private ImageView imgFirebaseRegisterAvatar;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private Uri avatarUri;
+
+    ActivityResultLauncher<Intent> startActivityForResult
+            = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        assert result.getData() != null;
+                        Bitmap photo = (Bitmap) result.getData().getExtras().get("data");
+                        imgFirebaseRegisterAvatar.setImageBitmap(photo);
+                        avatarUri = saveImageToStorage(photo);
+                    }
+                }
+            });
+
+    private Uri saveImageToStorage(Bitmap bitmap) {
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "ProfilePhoto", null);
+        return Uri.parse(path);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +92,31 @@ public class RegisterActivity extends AppCompatActivity {
         txtFirebaseRegisterPwd = findViewById(R.id.txtFirebaseRegisterPwd);
         txtFirebaseRegisterRePwd = findViewById(R.id.txtFirebaseRegisterRePwd);
         btnFirebaseRegister = findViewById(R.id.btnFirebaseRegister);
+        imgFirebaseRegisterAvatar = findViewById(R.id.imgFirebaseRegisterAvatar);
+
+        imgFirebaseRegisterAvatar.setImageResource(R.drawable.select_avatar);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+        imgFirebaseRegisterAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ContextCompat.checkSelfPermission(RegisterActivity.this,
+                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                        || ContextCompat.checkSelfPermission(RegisterActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(RegisterActivity.this,
+                            new String[]{Manifest.permission.CAMERA,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            1);
+                } else {
+                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult.launch(cameraIntent);
+                }
+            }
+        });
 
         btnFirebaseRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,14 +162,19 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
             return;
         }
+        else if(avatarUri == null) {
+            Toast.makeText(getApplicationContext(), "Please select a profile photo", Toast.LENGTH_LONG).show();
+            return;
+        }
 
         mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            Log.d("TAG", "till update");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateProfile(user, fName, lName);
+                            updateProfile(user, fName, lName, avatarUri);
                             Intent intent = new Intent(RegisterActivity.this, InClass08Activity.class);
                             startActivity(intent);
                             finish();
@@ -122,10 +186,11 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
-    private void updateProfile(FirebaseUser user, String fName, String lName) {
+    private void updateProfile(FirebaseUser user, String fName, String lName, Uri avatarUri) {
 
         UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
                 .setDisplayName(fName)
+                .setPhotoUri(avatarUri)
                 .build();
 
         user.updateProfile(profileUpdate)
@@ -138,6 +203,7 @@ public class RegisterActivity extends AppCompatActivity {
                             userMap.put("lastName", lName);
                             userMap.put("email", user.getEmail());
                             userMap.put("uid", user.getUid());
+                            userMap.put("photo", avatarUri);
 
                             db.collection("users")
                                     .document(user.getUid())

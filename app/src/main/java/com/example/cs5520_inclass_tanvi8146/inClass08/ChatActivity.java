@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.cs5520_inclass_tanvi8146.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -24,11 +26,14 @@ public class ChatActivity extends AppCompatActivity implements ChatListAdapter.O
     private RecyclerView recyclerView;
     private ChatListAdapter adapter;
     private FirebaseAuth mAuth;
+    private Button btnFirebaseEditProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        btnFirebaseEditProfile = findViewById(R.id.btnFirebaseEditProfile);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -49,6 +54,14 @@ public class ChatActivity extends AppCompatActivity implements ChatListAdapter.O
 
         adapter = new ChatListAdapter(options, this);
         recyclerView.setAdapter(adapter);
+
+        btnFirebaseEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ChatActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

@@ -68,6 +68,13 @@ public class MessengerActivity extends AppCompatActivity implements sendMessageF
         adapter = new MessengerAdapter(options, currentUser.getUid());
         messageRecyclerView.setAdapter(adapter);
 
+        messageRecyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                messageRecyclerView.scrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
+
     }
 
     @Override
@@ -90,6 +97,12 @@ public class MessengerActivity extends AppCompatActivity implements sendMessageF
                     }
                 });
 
+        messageRecyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                messageRecyclerView.scrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
     }
 
     @Override
@@ -105,15 +118,21 @@ public class MessengerActivity extends AppCompatActivity implements sendMessageF
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        messageRecyclerView.setAdapter(null);
+    protected void onPause() {
+        super.onPause();
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        messageRecyclerView.getAdapter().notifyDataSetChanged();
+        messageRecyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                messageRecyclerView.scrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
+        adapter.notifyDataSetChanged();
     }
 
 }

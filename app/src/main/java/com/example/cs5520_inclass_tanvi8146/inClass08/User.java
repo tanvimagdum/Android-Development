@@ -10,15 +10,17 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String photo;
 
     public User() {
 
     }
 
-    public User(String firstName, String lastName, String email) {
+    public User(String firstName, String lastName, String email, String photo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.photo = photo;
     }
 
     public String getFirstName() {
@@ -45,4 +47,11 @@ public class User {
         this.email = email;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 }

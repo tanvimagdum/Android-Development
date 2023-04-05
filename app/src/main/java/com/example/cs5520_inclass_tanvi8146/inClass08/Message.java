@@ -11,6 +11,7 @@ public class Message {
     private String senderId;
     private String receiverId;
     private String timestamp;
+    private String imageUrl;
 
     public Message() {
     }
@@ -52,6 +53,14 @@ public class Message {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
