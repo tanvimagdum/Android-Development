@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="4dp"
-    tools:context=".inClass08.sendMessageFragment">
+    tools:context=".inClass08_09.sendMessageFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

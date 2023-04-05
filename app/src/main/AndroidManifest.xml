@@ -21,19 +21,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".inClass08.EditProfileActivity"
+            android:name=".inClass08_09.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".inClass08.ChatActivity"
+            android:name=".inClass08_09.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".inClass08.MessengerActivity"
+            android:name=".inClass08_09.MessengerActivity"
             android:exported="false" />
         <activity
-            android:name=".inClass08.RegisterActivity"
+            android:name=".inClass08_09.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".inClass08.InClass08Activity"
+            android:name=".inClass08_09.InClass08Activity"
             android:exported="false" />
         <activity
             android:name=".inClass07.NotesProfileActivity"
